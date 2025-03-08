@@ -65,10 +65,9 @@ export const updateCompany = asyncHandler(async (req, res, next) => {
 });
 
 // ! sofeDelete
-
 export const softDeleteCompany = asyncHandler(async (req, res, next) => {
   const { companyId } = req.params;
-  const company = await Company.findById(companyId);
+  const company = await Company.findOneAndUpdate(companyId);
 
   if (!company) return next(new Error("Company not found!", { cause: 404 }));
 
